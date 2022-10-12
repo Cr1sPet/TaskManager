@@ -6,5 +6,10 @@ FactoryBot.define do
     email { "MyString" }
     avatar { "MyString" }
     type { "" }
+
+    factory :developer do
+      type { "Developer" }
+    end
+
   end
 end
