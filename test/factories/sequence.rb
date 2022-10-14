@@ -4,7 +4,7 @@ FactoryBot.define do
   end
 
   sequence :state do
-    "new_task"
+    'new_task'
   end
 
   sequence :email do |n|
