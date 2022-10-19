@@ -10,5 +10,4 @@ class Web::BoardsControllerTest < ActionController::TestCase
     user = create(:user)
     sign_in user
   end
-  
 end
