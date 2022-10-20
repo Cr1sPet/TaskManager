@@ -29,11 +29,18 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     respond_with(task, serializer: TaskSerializer)
   end
 
-  private
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy
+
+    respond_with(task)
+  end
 
   def self.responder
     JsonResponder
   end
+
+  private
 
   def task_params
     params.require(:task).permit(:name, :description, :author_id, :assignee_id, :state_event)

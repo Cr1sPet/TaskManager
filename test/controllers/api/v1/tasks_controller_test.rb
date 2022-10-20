@@ -46,7 +46,6 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
   end
 
   test 'should delete destroy' do
-    skip
     author = create(:user)
     task = create(:task, author: author)
     delete :destroy, params: { id: task.id, format: :json }
