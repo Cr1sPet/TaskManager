@@ -4,7 +4,8 @@ CONTAINER_NAME	=	web
 
 app-init:
 	@docker-compose run --rm $(CONTAINER_NAME) bash -c "bundle install && \
-	rails db:drop db:create db:migrate"
+	rails db:drop db:create db:migrate db:seed && \
+	yarn install --frozen-lockfile"
 
 app:
 	@docker-compose up
