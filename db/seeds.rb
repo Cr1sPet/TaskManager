@@ -10,11 +10,70 @@ admin = Admin.find_or_create_by(first_name: 'admin', last_name: 'admin', email: 
 admin.password = 'admin'
 admin.save
 
-60.times do |i|
-  u = [Manager, Developer].sample.new
-  u.email = "email#{i}@mail.gen"
-  u.first_name = "FN#{i}"
-  u.last_name = "LN#{i}"
-  u.password = "#{i}"
-  u.save
+developer = Developer.find_or_create_by(first_name: 'developer', last_name: 'dev', email: 'dev@local.host')
+developer.password = 'dev'
+developer.save
+
+
+manager = Manager.find_or_create_by(first_name: 'manager', last_name: 'manager', email: 'manager@local.host')
+manager.password = 'manager'
+manager.save
+
+
+task = Task.find_or_create_by(name: 'task', author_id: 3, assignee_id: 2, state: 'new_task')
+task.save
+
+# 60.times do |i|
+#   u = [Manager, Developer].sample.new
+#   u.email = "email#{i}@mail.gen"
+#   u.first_name = "FN#{i}"
+#   u.last_name = "LN#{i}"
+#   u.password = "#{i}"
+#   u.save
+# end
+
+i = 1
+
+20.times do |i|
+  t = [Task].sample.new
+  t.name = "task#{i}"
+  t.author_id = manager.id
+  t.assignee_id = developer.id
+  t.state = 'new_task'
+  t.expired_at = Date.current
+  t.description = "desc#{i}"
+  t.save
 end
+
+
+20.times do |i|
+  t = [Task].sample.new
+  t.name = "task2#{i}"
+  t.author_id = manager.id
+  t.assignee_id = developer.id
+  t.state = 'in_qa'
+  t.expired_at = Date.current
+  t.description = "desc2#{i}"
+  t.save
+end
+
+
+# t.string "name"
+# t.text "description"
+# t.integer "author_id"
+# t.integer "assignee_id"
+# t.string "state"
+# t.date "expired_at"
+# t.datetime "created_at", precision: 6, null: false
+# t.datetime "updated_at", precision: 6, null: false
+
+
+
+# 10.times do |i|
+#   t = [Task].sample.new
+#   u.email = "email#{i}@mail.gen"
+#   u.first_name = "FN#{i}"
+#   u.last_name = "LN#{i}"
+#   u.password = "#{i}"
+#   u.save
+# end

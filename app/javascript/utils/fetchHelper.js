@@ -20,34 +20,36 @@ function headers() {
 axios.defaults.headers.post = headers();
 axios.defaults.headers.put = headers();
 axios.defaults.headers.delete = headers();
+axios.defaults.headers.get = { Accept: '*/*' };
 axios.interceptors.response.use(null, (error) => {
   if (error.response.status === 422) {
     const {
       response: { data: errors },
     } = error;
+    console.log('FUCK response');
     return Promise.reject(camelize(errors.errors));
   }
 
   if (error.response.status === 500) {
     return Promise.reject(new Error('Something went wrong, please retry again'));
   }
-
   return Promise.reject(error);
 });
 
 export default {
   get(url, params = {}) {
-    return axios
+    const response = axios
       .get(url, {
         params: decamelize(params),
-        paramsSerializer: (parameters) => qs.stringify(parameters, { encode: false }),
+        // paramsSerializer: (parameters) => qs.stringify(parameters, { encode: false }),
       })
       .then(camelize);
+    console.log(response);
+    return response;
   },
 
   post(url, json) {
     const body = decamelize(json);
-
     return axios.post(url, body).then(camelize);
   },
 
