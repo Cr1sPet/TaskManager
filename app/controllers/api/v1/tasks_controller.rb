@@ -1,6 +1,6 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
   def index
-
+    puts 'TaskController index1'
     tasks = Task.all.
     ransack(ransack_params).
     result.

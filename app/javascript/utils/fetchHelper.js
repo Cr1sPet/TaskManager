@@ -26,7 +26,6 @@ axios.interceptors.response.use(null, (error) => {
     const {
       response: { data: errors },
     } = error;
-    console.log('FUCK response');
     return Promise.reject(camelize(errors.errors));
   }
 
@@ -44,7 +43,6 @@ export default {
         // paramsSerializer: (parameters) => qs.stringify(parameters, { encode: false }),
       })
       .then(camelize);
-    console.log(response);
     return response;
   },
 
