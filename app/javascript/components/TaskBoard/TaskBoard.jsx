@@ -3,6 +3,7 @@ import KanbanBoard from '@asseinfo/react-kanban';
 import { propOr } from 'ramda';
 
 import Task from 'components/Task';
+import TaskAdder from 'components/TaskAdder';
 import ColumnHeader from 'components/ColumnHeader';
 import TasksRepository from 'repositories/TasksRepository';
 
@@ -93,6 +94,7 @@ function TaskBoard() {
 
   return (
     <div>
+      <TaskAdder />
       <KanbanBoard
         onCardDragEnd={handleCardDragEnd}
         renderCard={(card) => <Task task={card} />}
