@@ -36,12 +36,7 @@ function TaskBoard() {
       perPage,
     });
 
-  const loadColumnMore = (state, page = 1, perPage = 10) => {
-    console.log('LOAD COLUMN MORE');
-    console.log(boardCards);
-    console.log(boardCards.new_task);
-    console.log('BOARD');
-    console.log(board);
+  const loadColumnMore = (state, page = 1, perPage = 9) => {
     loadColumn(state, page, perPage).then(({ data }) => {
       setBoardCards((prevState) => ({
         ...prevState,
@@ -53,7 +48,7 @@ function TaskBoard() {
     });
   };
 
-  const loadColumnInitial = (state, page = 1, perPage = 10) => {
+  const loadColumnInitial = (state, page = 1, perPage = 9) => {
     loadColumn(state, page, perPage).then(({ data }) => {
       setBoardCards((prevState) => ({
         ...prevState,
@@ -80,16 +75,10 @@ function TaskBoard() {
   useEffect(() => loadBoard(), []);
   useEffect(() => generateBoard(), [boardCards]);
 
-  function checkBoardsCards() {
-    console.log(Object.keys(boardCards));
-    console.log(Object.values(boardCards));
-  }
   return (
     <div>
-      <button onClick={() => checkBoardsCards()}> boardCards</button>
       <KanbanBoard
         renderCard={(card) => <Task task={card} />}
-        // renderColumnHeader={(column) => <ColumnHeader column={column} />}
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
       >
         {board}

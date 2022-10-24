@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import IconButton from '@material-ui/core/IconButton';
@@ -9,6 +9,7 @@ import useStyles from './useStyles';
 function ColumnHeader({ column, onLoadMore }) {
   const styles = useStyles();
 
+  const [show, setShow] = useState(true);
   const {
     id,
     title,
@@ -19,9 +20,16 @@ function ColumnHeader({ column, onLoadMore }) {
   const count = cards.length;
 
   const handleLoadMore = () => {
-    console.log(`onLoadMore called! ID : ${id}`);
     onLoadMore(id, currentPage + 1);
   };
+
+  useEffect(() => {
+    if (count === totalCount) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  }, [count]);
 
   return (
     <div className={styles.root}>
@@ -29,9 +37,11 @@ function ColumnHeader({ column, onLoadMore }) {
         <b>{title}</b> ({count}/{totalCount || '…'})
       </div>
       <div className={styles.actions}>
-        <IconButton aria-label="Load more" onClick={() => handleLoadMore()}>
-          <SystemUpdateAltIcon fontSize="small" />
-        </IconButton>
+        {show ? (
+          <IconButton aria-label="Load more" onClick={() => handleLoadMore()}>
+            <SystemUpdateAltIcon fontSize="small" />
+          </IconButton>
+        ) : null}
       </div>
     </div>
   );
@@ -39,6 +49,7 @@ function ColumnHeader({ column, onLoadMore }) {
 
 ColumnHeader.propTypes = {
   column: PropTypes.shape().isRequired,
+  onLoadMore: PropTypes.func.isRequired,
 };
 
 export default ColumnHeader;

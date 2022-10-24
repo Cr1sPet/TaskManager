@@ -1,5 +1,4 @@
 import axios from 'axios';
-import qs from 'qs';
 
 import { camelize, decamelize } from './keysConverter';
 
@@ -40,7 +39,6 @@ export default {
     return axios
       .get(url, {
         params: decamelize(params),
-        // paramsSerializer: (parameters) => qs.stringify(parameters, { encode: false }),
       })
       .then(camelize);
   },
