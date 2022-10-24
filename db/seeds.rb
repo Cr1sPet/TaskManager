@@ -34,9 +34,9 @@ task.save
 
 i = 1
 
-20.times do |i|
+100.times do |i|
   t = [Task].sample.new
-  t.name = "task#{i}"
+  t.name = "new_task_task#{i}"
   t.author_id = manager.id
   t.assignee_id = developer.id
   t.state = 'new_task'
@@ -46,9 +46,9 @@ i = 1
 end
 
 
-20.times do |i|
+200.times do |i|
   t = [Task].sample.new
-  t.name = "task2#{i}"
+  t.name = "in_qa_task#{i}"
   t.author_id = manager.id
   t.assignee_id = developer.id
   t.state = 'in_qa'

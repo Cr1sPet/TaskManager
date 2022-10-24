@@ -3,6 +3,7 @@ import KanbanBoard from '@asseinfo/react-kanban';
 import { propOr } from 'ramda';
 
 import Task from 'components/Task';
+import ColumnHeader from 'components/ColumnHeader';
 import TasksRepository from 'repositories/TasksRepository';
 
 const STATES = [
@@ -35,7 +36,24 @@ function TaskBoard() {
       perPage,
     });
 
-  const loadColumnInitial = (state, page = 1, perPage = 5) => {
+  const loadColumnMore = (state, page = 1, perPage = 10) => {
+    console.log('LOAD COLUMN MORE');
+    console.log(boardCards);
+    console.log(boardCards.new_task);
+    console.log('BOARD');
+    console.log(board);
+    loadColumn(state, page, perPage).then(({ data }) => {
+      setBoardCards((prevState) => ({
+        ...prevState,
+        [state]: {
+          cards: [...boardCards[state].cards, ...data.items],
+          meta: data.meta,
+        },
+      }));
+    });
+  };
+
+  const loadColumnInitial = (state, page = 1, perPage = 10) => {
     loadColumn(state, page, perPage).then(({ data }) => {
       setBoardCards((prevState) => ({
         ...prevState,
@@ -62,7 +80,22 @@ function TaskBoard() {
   useEffect(() => loadBoard(), []);
   useEffect(() => generateBoard(), [boardCards]);
 
-  return <KanbanBoard renderCard={(card) => <Task task={card} />}>{board}</KanbanBoard>;
+  function checkBoardsCards() {
+    console.log(Object.keys(boardCards));
+    console.log(Object.values(boardCards));
+  }
+  return (
+    <div>
+      <button onClick={() => checkBoardsCards()}> boardCards</button>
+      <KanbanBoard
+        renderCard={(card) => <Task task={card} />}
+        // renderColumnHeader={(column) => <ColumnHeader column={column} />}
+        renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
+      >
+        {board}
+      </KanbanBoard>
+    </div>
+  );
 }
 
 export default TaskBoard;

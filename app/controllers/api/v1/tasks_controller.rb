@@ -7,7 +7,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     page(page).
     per(per_page)
 
-    puts 'PARAMS2'
+    puts 'PARAMS254'
     puts params
 
     respond_with(tasks, each_serializer: TaskSerializer, root: 'items', meta: build_meta(tasks))

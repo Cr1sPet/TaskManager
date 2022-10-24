@@ -37,13 +37,12 @@ axios.interceptors.response.use(null, (error) => {
 
 export default {
   get(url, params = {}) {
-    const response = axios
+    return axios
       .get(url, {
         params: decamelize(params),
         // paramsSerializer: (parameters) => qs.stringify(parameters, { encode: false }),
       })
       .then(camelize);
-    return response;
   },
 
   post(url, json) {
