@@ -29,7 +29,7 @@ function ColumnHeader({ column, onLoadMore }) {
     } else {
       setShow(true);
     }
-  }, [count]);
+  }, [count === totalCount]);
 
   return (
     <div className={styles.root}>

@@ -1,13 +1,11 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
   def index
-    
+
     tasks = Task.all.
     ransack(ransack_params).
     result.
     page(page).
     per(per_page)
-
-    puts params
 
     respond_with(tasks, each_serializer: TaskSerializer, root: 'items', meta: build_meta(tasks))
 
@@ -47,7 +45,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :author_id, :assignee_id, :state_event, :expired_at)
+    params.permit(:name, :description, :author_id, :assignee_id, :state_event, :expired_at)
   end
 
   # def ransack_params
