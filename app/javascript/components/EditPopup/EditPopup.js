@@ -33,6 +33,7 @@ function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onUpdateCard })
       setErrors(error || {});
 
       if (error instanceof Error) {
+        // eslint-disable-next-line no-alert
         alert(`Update Failed! Error: ${error.message}`);
       }
     });
@@ -44,6 +45,7 @@ function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onUpdateCard })
     onCardDestroy(task).catch((error) => {
       setSaving(false);
 
+      // eslint-disable-next-line no-alert
       alert(`Destrucion Failed! Error: ${error.message}`);
     });
   };
@@ -94,6 +96,12 @@ function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onUpdateCard })
   );
 }
 
-EditPopup.propTypes = {};
+EditPopup.propTypes = {
+  cardId: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onCardDestroy: PropTypes.func.isRequired,
+  onLoadCard: PropTypes.func.isRequired,
+  onUpdateCard: PropTypes.func.isRequired,
+};
 
 export default EditPopup;

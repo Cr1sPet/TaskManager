@@ -23,18 +23,8 @@ manager.save
 task = Task.find_or_create_by(name: 'task', author_id: 3, assignee_id: 2, state: 'new_task')
 task.save
 
-# 60.times do |i|
-#   u = [Manager, Developer].sample.new
-#   u.email = "email#{i}@mail.gen"
-#   u.first_name = "FN#{i}"
-#   u.last_name = "LN#{i}"
-#   u.password = "#{i}"
-#   u.save
-# end
 
-i = 1
-
-3.times do |i|
+57.times do |i|
   t = [Task].sample.new
   t.name = "new_task_task#{i}"
   t.author_id = manager.id
@@ -46,34 +36,13 @@ i = 1
 end
 
 
-# 200.times do |i|
-#   t = [Task].sample.new
-#   t.name = "in_qa_task#{i}"
-#   t.author_id = manager.id
-#   t.assignee_id = developer.id
-#   t.state = 'in_qa'
-#   t.expired_at = Date.current
-#   t.description = "desc2#{i}"
-#   t.save
-# end
-
-
-# t.string "name"
-# t.text "description"
-# t.integer "author_id"
-# t.integer "assignee_id"
-# t.string "state"
-# t.date "expired_at"
-# t.datetime "created_at", precision: 6, null: false
-# t.datetime "updated_at", precision: 6, null: false
-
-
-
-# 10.times do |i|
-#   t = [Task].sample.new
-#   u.email = "email#{i}@mail.gen"
-#   u.first_name = "FN#{i}"
-#   u.last_name = "LN#{i}"
-#   u.password = "#{i}"
-#   u.save
-# end
+45.times do |i|
+  t = [Task].sample.new
+  t.name = "in_qa_task#{i}"
+  t.author_id = manager.id
+  t.assignee_id = developer.id
+  t.state = 'in_qa'
+  t.expired_at = Date.current
+  t.description = "desc2#{i}"
+  t.save
+end

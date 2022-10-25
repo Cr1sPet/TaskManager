@@ -48,7 +48,15 @@ function ColumnHeader({ column, onLoadMore }) {
 }
 
 ColumnHeader.propTypes = {
-  column: PropTypes.shape().isRequired,
+  column: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    meta: PropTypes.shape({
+      totalCount: PropTypes.number,
+      currentPage: PropTypes.number,
+    }),
+  }).isRequired,
   onLoadMore: PropTypes.func.isRequired,
 };
 

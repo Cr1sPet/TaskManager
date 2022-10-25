@@ -28,6 +28,7 @@ export default function AddPopup({ onClose, onCreateCard }) {
       setErrors(error || {});
 
       if (error instanceof Error) {
+        // eslint-disable-next-line no-alert
         alert(`Creation Failed! Error: ${error.message}`);
       }
     });

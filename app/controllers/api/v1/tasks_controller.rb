@@ -1,6 +1,5 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
   def index
-
     search = Task.ransack(ransack_search_params)
     search.sorts = ransack_sort_params
     tasks = search.
@@ -25,11 +24,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   end
 
   def update
-
-    puts 'FUNCY12'
-    puts params
     fetched_task = Task.find(params[:id])
-    puts params
     fetched_task.update(task_params)
 
     respond_with(fetched_task, serializer: TaskSerializer)

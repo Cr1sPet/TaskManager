@@ -33,6 +33,7 @@ const initialBoard = {
 const MODES = {
   ADD: 'add',
   NONE: 'none',
+  EDIT: 'edit',
 };
 
 function TaskBoard() {
@@ -76,7 +77,7 @@ function TaskBoard() {
       columns: STATES.map(({ key, value }) => ({
         id: key,
         title: value,
-        cards: propOr({}, 'cards', boardCards[key]),
+        cards: propOr([], 'cards', boardCards[key]),
         meta: propOr({}, 'meta', boardCards[key]),
       })),
     });
@@ -101,10 +102,11 @@ function TaskBoard() {
       },
     })
       .then(() => {
-        loadColumnInitial(destination.toColumnId);
         loadColumnInitial(source.fromColumnId);
+        loadColumnInitial(destination.toColumnId);
       })
       .catch((error) => {
+        // eslint-disable-next-line no-alert
         alert(`Move failed! ${error.message}`);
       });
   };
@@ -125,9 +127,10 @@ function TaskBoard() {
 
   const handleTaskCreate = (params) => {
     const attributes = TaskForm.attributesToSubmit(params);
+
     return TasksRepository.create(attributes).then(({ data: { task } }) => {
-      handleClose();
       loadColumnInitial(task.state);
+      handleClose();
     });
   };
 

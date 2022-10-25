@@ -32,7 +32,11 @@ function Task({ task, onClick }) {
 }
 
 Task.propTypes = {
-  task: PropTypes.shape().isRequired,
+  task: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Task;
