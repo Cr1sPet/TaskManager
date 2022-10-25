@@ -38,6 +38,7 @@ function TaskBoard() {
     });
 
   const loadColumnMore = (state, page = 1, perPage = 9) => {
+    console.log(`load column more :${state}`);
     loadColumn(state, page, perPage).then(({ data }) => {
       setBoardCards((prevState) => ({
         ...prevState,
@@ -50,6 +51,7 @@ function TaskBoard() {
   };
 
   const loadColumnInitial = (state, page = 1, perPage = 9) => {
+    console.log('COLUMN INITIAL');
     loadColumn(state, page, perPage).then(({ data }) => {
       setBoardCards((prevState) => ({
         ...prevState,
@@ -94,14 +96,14 @@ function TaskBoard() {
 
   return (
     <div>
-      <TaskAdder />
+      <TaskAdder loadColumn={loadColumnInitial} />
       <KanbanBoard
         onCardDragEnd={handleCardDragEnd}
         renderCard={(card) => <Task task={card} />}
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
       >
         {board}
-      </KanbanBoard>
+      </KanbanBoard>w
     </div>
   );
 }

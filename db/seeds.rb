@@ -34,7 +34,7 @@ task.save
 
 i = 1
 
-100.times do |i|
+3.times do |i|
   t = [Task].sample.new
   t.name = "new_task_task#{i}"
   t.author_id = manager.id
@@ -46,16 +46,16 @@ i = 1
 end
 
 
-200.times do |i|
-  t = [Task].sample.new
-  t.name = "in_qa_task#{i}"
-  t.author_id = manager.id
-  t.assignee_id = developer.id
-  t.state = 'in_qa'
-  t.expired_at = Date.current
-  t.description = "desc2#{i}"
-  t.save
-end
+# 200.times do |i|
+#   t = [Task].sample.new
+#   t.name = "in_qa_task#{i}"
+#   t.author_id = manager.id
+#   t.assignee_id = developer.id
+#   t.state = 'in_qa'
+#   t.expired_at = Date.current
+#   t.description = "desc2#{i}"
+#   t.save
+# end
 
 
 # t.string "name"

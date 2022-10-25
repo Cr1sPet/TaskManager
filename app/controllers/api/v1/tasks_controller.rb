@@ -1,14 +1,14 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
   def index
-
-    tasks = Task.all.
-    ransack(ransack_params).
-    result.
-    page(page).
-    per(per_page)
+    puts 'SEARCH'
+    search = Task.ransack(ransack_search_params)
+    search.sorts = ransack_sort_params
+    tasks = search.
+      result.
+      page(page).
+      per(per_page)
 
     respond_with(tasks, each_serializer: TaskSerializer, root: 'items', meta: build_meta(tasks))
-
   end
 
   def show
@@ -47,9 +47,4 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   def task_params
     params.permit(:name, :description, :author_id, :assignee_id, :state_event, :expired_at)
   end
-
-  # def ransack_params
-  #   params.permit(:page, :per_page)
-  # end
-
 end

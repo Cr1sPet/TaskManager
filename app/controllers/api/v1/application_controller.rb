@@ -1,7 +1,7 @@
 class Api::V1::ApplicationController < Api::ApplicationController
   respond_to :json, :js
 
-  RANSACK_DEFAULT_SORT = 'id ASC'.freeze
+  RANSACK_DEFAULT_SORT = 'id DESC'.freeze
 
   def build_meta(collection)
     {
@@ -13,8 +13,12 @@ class Api::V1::ApplicationController < Api::ApplicationController
     }
   end
 
-  def ransack_params
+  def ransack_search_params
     params.to_unsafe_h.fetch(:q, { s: RANSACK_DEFAULT_SORT })
+  end
+
+  def ransack_sort_params
+    RANSACK_DEFAULT_SORT
   end
 
   def page
