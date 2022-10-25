@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Modal from '@material-ui/core/Modal';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import IconButton from '@material-ui/core/IconButton';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import CloseIcon from '@material-ui/icons/Close';
 import { isNil } from 'ramda';
 
 import Form from './components/Form';
 
 import useStyles from './useStyles';
 
-function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate }) {
+function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onUpdateCard }) {
   const [task, setTask] = useState(null);
   const [isSaving, setSaving] = useState(false);
   const [errors, setErrors] = useState({});
@@ -19,7 +28,7 @@ function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
   const handleCardUpdate = () => {
     setSaving(true);
 
-    onCardUpdate(task).catch((error) => {
+    onUpdateCard(task).catch((error) => {
       setSaving(false);
       setErrors(error || {});
 
