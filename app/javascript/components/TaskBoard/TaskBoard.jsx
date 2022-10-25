@@ -84,7 +84,11 @@ function TaskBoard() {
       return null;
     }
 
-    return TasksRepository.update(task.id, { stateEvent: transition.event })
+    return TasksRepository.update(task.id, {
+      task: {
+        stateEvent: transition.event,
+      },
+    })
       .then(() => {
         loadColumnInitial(destination.toColumnId);
         loadColumnInitial(source.fromColumnId);
@@ -103,7 +107,7 @@ function TaskBoard() {
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
       >
         {board}
-      </KanbanBoard>w
+      </KanbanBoard>
     </div>
   );
 }

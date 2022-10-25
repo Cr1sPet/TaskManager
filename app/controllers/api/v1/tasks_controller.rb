@@ -25,10 +25,11 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
-    task.update(task_params)
+    fetched_task = Task.find(params[:id])
+    puts params
+    fetched_task.update(task_params)
 
-    respond_with(task, serializer: TaskSerializer)
+    respond_with(fetched_task, serializer: TaskSerializer)
   end
 
   def destroy
@@ -45,6 +46,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   private
 
   def task_params
-    params.permit(:name, :description, :author_id, :assignee_id, :state_event, :expired_at)
+    params.require(:task).permit(:name, :description, :author_id, :assignee_id, :state_event, :expired_at)
   end
 end

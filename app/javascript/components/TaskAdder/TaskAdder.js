@@ -26,17 +26,9 @@ export default function TaskAdder({ loadColumn }) {
 
   const handleTaskCreate = (params) => {
     const attributes = TaskForm.attributesToSubmit(params);
-    console.log(attributes);
     return TasksRepository.create(attributes).then(({ data: { task } }) => {
       handleClose();
       loadColumn(task.state);
-    });
-  };
-
-  const createDefTask = () => {
-    handleTaskCreate({
-      name: 'aboba1',
-      description: 'aboba2',
     });
   };
 
