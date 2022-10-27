@@ -1,5 +1,5 @@
 class Api::V1::ApplicationController < Api::ApplicationController
-  respond_to :json, :js
+  respond_to :json
 
   RANSACK_DEFAULT_SORT = 'updated_at DESC'.freeze
 
