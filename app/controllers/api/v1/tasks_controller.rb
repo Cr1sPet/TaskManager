@@ -24,10 +24,10 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   end
 
   def update
-    fetched_task = Task.find(params[:id])
-    fetched_task.update(task_params)
+    task = Task.find(params[:id])
+    task.update(task_params)
 
-    respond_with(fetched_task, serializer: TaskSerializer)
+    respond_with(task, serializer: TaskSerializer)
   end
 
   def destroy
