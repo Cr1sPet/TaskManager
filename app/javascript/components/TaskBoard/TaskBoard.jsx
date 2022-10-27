@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import KanbanBoard from '@asseinfo/react-kanban';
 import { propOr } from 'ramda';
+import KanbanBoard from '@asseinfo/react-kanban';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@mui/icons-material/Add';
+
+import useStyles from './useStyles';
+import TaskForm from 'forms/TaskForm';
 import Task from 'components/Task';
 import AddPopup from 'components/AddPopup';
 import EditPopup from 'components/EditPopup';
 import ColumnHeader from 'components/ColumnHeader';
 import TasksRepository from 'repositories/TasksRepository';
-import useStyles from './useStyles';
-import TaskForm from 'forms/TaskForm';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@mui/icons-material/Add';
 
 const STATES = [
   { key: 'new_task', value: 'New' },
