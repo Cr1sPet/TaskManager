@@ -20,7 +20,7 @@ manager.password = 'manager'
 manager.save
 
 
-task = Task.find_or_create_by(name: 'task', author_id: 3, assignee_id: 2, state: 'new_task')
+task = Task.find_or_create_by(name: 'task', author_id: manager.id, assignee_id: developer.id, state: 'new_task')
 task.save
 
 
