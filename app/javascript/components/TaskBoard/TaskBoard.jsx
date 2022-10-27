@@ -57,7 +57,7 @@ function TaskBoard() {
       setBoardCards((prevState) => ({
         ...prevState,
         [state]: {
-          cards: [...boardCards[state].cards, ...data.items],
+          cards: [...prevState[state].cards, ...data.items],
           meta: data.meta,
         },
       }));
