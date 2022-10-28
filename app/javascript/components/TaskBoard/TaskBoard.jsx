@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { propOr } from 'ramda';
 import KanbanBoard from '@asseinfo/react-kanban';
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@material-ui/icons/Add';
 
 import useStyles from './useStyles';
 import TaskForm from 'forms/TaskForm';
