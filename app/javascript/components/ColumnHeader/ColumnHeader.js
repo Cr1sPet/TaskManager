@@ -18,7 +18,7 @@ function ColumnHeader({ column, onLoadMore }) {
 
   const count = cards.length;
 
-  const show = !(count === totalCount);
+  const show = count !== totalCount;
 
   const handleLoadMore = () => {
     onLoadMore(id, currentPage + 1);
