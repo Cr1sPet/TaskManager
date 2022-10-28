@@ -13,12 +13,10 @@ class Api::V1::ApplicationController < Api::ApplicationController
     }
   end
 
-  def ransack_search_params
-    params.to_unsafe_h.fetch(:q, { s: RANSACK_DEFAULT_SORT })
-  end
-
-  def ransack_sort_params
-    RANSACK_DEFAULT_SORT
+  def ransack_params
+    parameters = params.to_unsafe_h.fetch(:q, {})
+    parameters[:s] ||= RANSACK_DEFAULT_SORT
+    parameters
   end
 
   def page

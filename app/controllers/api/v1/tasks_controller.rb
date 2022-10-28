@@ -1,8 +1,6 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
   def index
-    search = Task.ransack(ransack_search_params)
-    search.sorts = ransack_sort_params
-    tasks = search.
+    tasks = Task.ransack(ransack_params).
       result.
       page(page).
       per(per_page)
