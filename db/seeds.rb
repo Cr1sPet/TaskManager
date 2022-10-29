@@ -10,11 +10,39 @@ admin = Admin.find_or_create_by(first_name: 'admin', last_name: 'admin', email: 
 admin.password = 'admin'
 admin.save
 
-60.times do |i|
-  u = [Manager, Developer].sample.new
-  u.email = "email#{i}@mail.gen"
-  u.first_name = "FN#{i}"
-  u.last_name = "LN#{i}"
-  u.password = "#{i}"
-  u.save
+developer = Developer.find_or_create_by(first_name: 'developer', last_name: 'dev', email: 'dev@local.host')
+developer.password = 'dev'
+developer.save
+
+
+manager = Manager.find_or_create_by(first_name: 'manager', last_name: 'manager', email: 'manager@local.host')
+manager.password = 'manager'
+manager.save
+
+
+task = Task.find_or_create_by(name: 'task', author_id: manager.id, assignee_id: developer.id, state: 'new_task')
+task.save
+
+
+57.times do |i|
+  t = [Task].sample.new
+  t.name = "new_task_task#{i}"
+  t.author_id = manager.id
+  t.assignee_id = developer.id
+  t.state = 'new_task'
+  t.expired_at = Date.current
+  t.description = "desc#{i}"
+  t.save
+end
+
+
+45.times do |i|
+  t = [Task].sample.new
+  t.name = "in_qa_task#{i}"
+  t.author_id = manager.id
+  t.assignee_id = developer.id
+  t.state = 'in_qa'
+  t.expired_at = Date.current
+  t.description = "desc2#{i}"
+  t.save
 end
