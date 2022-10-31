@@ -9,4 +9,5 @@ export default new PropTypesPresenter({
   state: PropTypes.string,
   transitions: PropTypes.arrayOf(PropTypes.shape()),
   author: UserPresenter.shape(),
+  assignee: UserPresenter.shape(),
 });
