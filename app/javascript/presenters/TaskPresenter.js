@@ -16,5 +16,8 @@ export default new PropTypesPresenter(
     description(task) {
       return task.description;
     },
+    author(task) {
+      return task.author;
+    },
   },
 );
