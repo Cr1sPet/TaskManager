@@ -8,8 +8,11 @@ export default new PropTypesPresenter(
     description: PropTypes.string.isRequired,
   },
   {
-    fullName(user) {
-      return `${this.firstName(user)} ${this.lastName(user)}`;
+    name(task) {
+      return task.name;
+    },
+    description(task) {
+      return task.description;
     },
   },
 );
