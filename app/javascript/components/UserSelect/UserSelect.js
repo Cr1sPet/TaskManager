@@ -8,6 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import UsersRepository from 'repositories/UsersRepository';
 import useStyles from './useStyles';
+import UserPresenter from 'presenters/UserPresenter';
 
 function UserSelect({ error, label, isClearable, isDisabled, isRequired, onChange, value, helperText }) {
   const [isFocused, setFocus] = useState(false);
@@ -23,7 +24,7 @@ function UserSelect({ error, label, isClearable, isDisabled, isRequired, onChang
           cacheOptions
           loadOptions={handleLoadOptions}
           defaultOptions
-          getOptionLabel={(user) => `${user.firstName} ${user.lastName}`}
+          getOptionLabel={(user) => UserPresenter.fullName(user)}
           getOptionValue={(user) => user.id}
           isDisabled={isDisabled}
           isClearable={isClearable}
@@ -41,16 +42,13 @@ function UserSelect({ error, label, isClearable, isDisabled, isRequired, onChang
 }
 
 UserSelect.propTypes = {
-  error: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
   label: PropTypes.string.isRequired,
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,
   isRequired: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-  }),
+  value: UserPresenter.shape(),
   helperText: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
@@ -60,6 +58,7 @@ UserSelect.defaultProps = {
   isRequired: true,
   helperText: null,
   value: null,
+  error: false,
 };
 
 export default UserSelect;
