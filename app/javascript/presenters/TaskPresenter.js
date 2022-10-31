@@ -7,5 +7,6 @@ export default new PropTypesPresenter({
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   state: PropTypes.string,
+  transitions: PropTypes.arrayOf(PropTypes.shape()),
   author: UserPresenter.shape(),
 });
