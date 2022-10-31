@@ -41,14 +41,25 @@ function UserSelect({ error, label, isClearable, isDisabled, isRequired, onChang
 }
 
 UserSelect.propTypes = {
-  error: PropTypes.bool,
+  error: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   isClearable: PropTypes.bool,
   isDisabled: PropTypes.bool,
   isRequired: PropTypes.bool,
-  onChange: PropTypes.func,
-  value: PropTypes.shape(),
-  helperText: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+  }),
+  helperText: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+UserSelect.defaultProps = {
+  isClearable: true,
+  isDisabled: false,
+  isRequired: true,
+  helperText: null,
+  value: null,
 };
 
 export default UserSelect;

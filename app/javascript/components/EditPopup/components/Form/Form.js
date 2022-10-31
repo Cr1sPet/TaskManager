@@ -38,8 +38,6 @@ function Form({ errors, onChange, task }) {
         label="Author"
         value={task.author}
         onChange={handleChangeSelect('author')}
-        // isDisabled
-        isRequired
         error={has('author', errors)}
         helperText={errors.author}
       />
@@ -52,6 +50,10 @@ Form.propTypes = {
   task: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    author: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+    }),
   }).isRequired,
   errors: PropTypes.shape({
     name: PropTypes.arrayOf(PropTypes.string),
