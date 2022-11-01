@@ -12,8 +12,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import { isNil } from 'ramda';
 
 import Form from './components/Form';
-
 import useStyles from './useStyles';
+import TaskPresenter from 'presenters/TaskPresenter';
 
 function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onUpdateCard }) {
   const [task, setTask] = useState(null);
@@ -60,7 +60,11 @@ function EditPopup({ cardId, onClose, onCardDestroy, onLoadCard, onUpdateCard })
               <CloseIcon />
             </IconButton>
           }
-          title={isLoading ? 'Your task is loading. Please be patient.' : `Task # ${task.id} [${task.name}]`}
+          title={
+            isLoading
+              ? 'Your task is loading. Please be patient.'
+              : `Task # ${TaskPresenter.id(task)} [${TaskPresenter.name(task)}]`
+          }
         />
         <CardContent>
           {isLoading ? (
