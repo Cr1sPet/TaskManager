@@ -64,10 +64,16 @@ export const useTasksActions = () => {
     });
   };
 
+  const destroyTask = (task) =>
+    TasksRepository.destroy(TaskPresenter.id(task)).then(() => {
+      loadColumn(TaskPresenter.state(task));
+    });
+
   return {
     loadBoard,
     loadColumn,
     loadTask,
     updateTask,
+    destroyTask,
   };
 };
