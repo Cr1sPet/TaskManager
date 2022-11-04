@@ -19,7 +19,7 @@ const MODES = {
 };
 
 function TaskBoard() {
-  const { board, loadBoard } = useTasks();
+  const { board, loadBoard, loadTask, updateTask } = useTasks();
   const [mode, setMode] = useState(MODES.NONE);
   const [openedTaskId, setOpenedTaskId] = useState(null);
   const styles = useStyles();
@@ -42,11 +42,13 @@ function TaskBoard() {
     setOpenedTaskId(null);
   };
 
+  const handleTaskUpdate = (task) => updateTask(task).then(() => handleClose());
+
+  const handleTaskLoad = (id) => loadTask(id);
+
   const loadColumnMore = () => {};
   const handleCardDragEnd = () => {};
   const handleTaskCreate = () => {};
-  const handleTaskLoad = () => {};
-  const handleTaskUpdate = () => {};
   const handleTaskDestroy = () => {};
 
   return (
@@ -69,7 +71,7 @@ function TaskBoard() {
         <EditPopup
           onLoadCard={handleTaskLoad}
           onCardDestroy={handleTaskDestroy}
-          onCardUpdate={handleTaskUpdate}
+          onUpdateCard={handleTaskUpdate}
           onClose={handleClose}
           cardId={openedTaskId}
         />
