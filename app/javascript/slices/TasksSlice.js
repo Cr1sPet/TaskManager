@@ -32,10 +32,21 @@ const tasksSlice = createSlice({
 
       return state;
     },
+    loadColumnMoreSuccess(state, { payload }) {
+      const { items, meta, columnId } = payload;
+      const column = state.board.columns.find(propEq('id', columnId));
+
+      state.board = changeColumn(state.board, column, {
+        cards: [...column.cards, ...items],
+        meta,
+      });
+
+      return state;
+    },
   },
 });
 
-const { loadColumnSuccess } = tasksSlice.actions;
+const { loadColumnSuccess, loadColumnMoreSuccess } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
 
@@ -49,6 +60,16 @@ export const useTasksActions = () => {
       perPage,
     }).then(({ data }) => {
       dispatch(loadColumnSuccess({ ...data, columnId: state }));
+    });
+  };
+
+  const onLoadColumnMore = (state, page = 1, perPage = 10) => {
+    TasksRepository.index({
+      q: { stateEq: state },
+      page,
+      perPage,
+    }).then(({ data }) => {
+      dispatch(loadColumnMoreSuccess({ ...data, columnId: state }));
     });
   };
 
@@ -105,5 +126,6 @@ export const useTasksActions = () => {
     destroyTask,
     createTask,
     onCardDragEnd,
+    onLoadColumnMore,
   };
 };
