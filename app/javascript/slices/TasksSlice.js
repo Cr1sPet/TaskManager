@@ -77,6 +77,26 @@ export const useTasksActions = () => {
       loadColumn(TaskPresenter.state(task));
     });
 
+  const onCardDragEnd = (task, source, destination) => {
+    const transition = TaskPresenter.transitions(task).find(({ to }) => destination.toColumnId === to);
+    if (!transition) {
+      return null;
+    }
+
+    return TasksRepository.update(TaskPresenter.id(task), {
+      task: {
+        stateEvent: transition.event,
+      },
+    })
+      .then(() => {
+        loadColumn(source.fromColumnId);
+        loadColumn(destination.toColumnId);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-alert
+        alert(`Move failed! ${error.message}`);
+      });
+  };
   return {
     loadBoard,
     loadColumn,
@@ -84,5 +104,6 @@ export const useTasksActions = () => {
     updateTask,
     destroyTask,
     createTask,
+    onCardDragEnd,
   };
 };
