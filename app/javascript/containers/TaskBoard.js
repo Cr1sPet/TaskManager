@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import KanbanBoard from '@lourenci/react-kanban';
+import KanbanBoard from '@asseinfo/react-kanban';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
