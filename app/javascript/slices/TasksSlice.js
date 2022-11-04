@@ -64,6 +64,14 @@ export const useTasksActions = () => {
     });
   };
 
+  const createTask = (params) => {
+    const attributes = TaskForm.attributesToSubmit(params);
+
+    return TasksRepository.create(attributes).then(({ data: { task } }) => {
+      loadColumn(TaskPresenter.state(task));
+    });
+  };
+
   const destroyTask = (task) =>
     TasksRepository.destroy(TaskPresenter.id(task)).then(() => {
       loadColumn(TaskPresenter.state(task));
@@ -75,5 +83,6 @@ export const useTasksActions = () => {
     loadTask,
     updateTask,
     destroyTask,
+    createTask,
   };
 };
