@@ -10,6 +10,7 @@ const useTasks = () => {
   return {
     board,
     loadBoard,
+    loadColumn,
   };
 };
 

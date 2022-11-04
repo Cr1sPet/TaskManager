@@ -55,5 +55,6 @@ export const useTasksActions = () => {
 
   return {
     loadBoard,
+    loadColumn,
   };
 };
