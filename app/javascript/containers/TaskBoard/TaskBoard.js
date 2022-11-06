@@ -47,9 +47,7 @@ function TaskBoard() {
 
   const handleTaskLoad = (id) => loadTask(id);
 
-  const loadColumnMore = (state, page = 1, perPage = 10) => {
-    onLoadColumnMore(state, page, perPage);
-  };
+  const loadColumnMore = (state, page = 1, perPage = 10) => onLoadColumnMore(state, page, perPage);
   const handleCardDragEnd = (task, source, destination) => {
     onCardDragEnd(task, source, destination);
   };

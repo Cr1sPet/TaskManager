@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import IconButton from '@material-ui/core/IconButton';
@@ -9,6 +9,7 @@ import useStyles from './useStyles';
 function ColumnHeader({ column, onLoadMore }) {
   const styles = useStyles();
 
+  const [disabled, setDisabled] = useState(false);
   const {
     id,
     title,
@@ -21,7 +22,10 @@ function ColumnHeader({ column, onLoadMore }) {
   const show = count !== totalCount;
 
   const handleLoadMore = () => {
-    onLoadMore(id, currentPage + 1);
+    setDisabled(true);
+    onLoadMore(id, currentPage + 1).then(() => {
+      setDisabled(false);
+    });
   };
 
   return (
@@ -31,7 +35,7 @@ function ColumnHeader({ column, onLoadMore }) {
       </div>
       <div className={styles.actions}>
         {show && (
-          <IconButton aria-label="Load more" onClick={() => handleLoadMore()}>
+          <IconButton aria-label="Load more" disabled={disabled} onClick={() => handleLoadMore()}>
             <SystemUpdateAltIcon fontSize="small" />
           </IconButton>
         )}
