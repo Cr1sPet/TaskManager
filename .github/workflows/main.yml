@@ -18,4 +18,5 @@ jobs:
           COVERAGE: true
           RAILS_ENV: test
           ENV: CI
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: docker-compose --file docker-compose.ci.yml run ci
