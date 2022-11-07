@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 
 services:
   db:
@@ -10,7 +10,7 @@ services:
     environment:
       - COVERAGE
       - RAILS_ENV
-      - ENV
+      - CI
       - GITHUB_TOKEN
       - DATABASE_HOST=db
       - DATABASE_USERNAME=postgres
