@@ -32,9 +32,10 @@ group :development, :test do
 
   gem 'factory_bot_rails'
   gem 'rubocop'
-  gem 'coveralls_reborn', require: false
-  gem 'simplecov-lcov'
+
+  gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'simplecov', require: false
+  gem 'coveralls_reborn', '~> 0.25.0', require: false
 end
 
 group :development do

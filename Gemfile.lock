@@ -303,7 +303,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
-  coveralls_reborn
+  coveralls_reborn (~> 0.25.0)
   factory_bot_rails
   jbuilder (~> 2.7)
   js-routes
@@ -320,7 +320,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   simplecov
-  simplecov-lcov
+  simplecov-lcov (~> 0.8.0)
   slim-rails
   state_machines
   state_machines-activerecord
