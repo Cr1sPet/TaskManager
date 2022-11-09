@@ -10,6 +10,7 @@ services:
     volumes:
       - ./coverage:/task_manager/coverage/
     environment:
+      - COVERALLS_REPO_TOKEN
       - COVERAGE
       - RAILS_ENV
       - CI
