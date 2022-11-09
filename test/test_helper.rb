@@ -1,7 +1,7 @@
 require 'simplecov'
 
 SimpleCov.start do
-  if ENV['CI']
+  if ENV['COVERAGE']
     require 'simplecov-lcov'
 
     SimpleCov::Formatter::LcovFormatter.config do |c|
