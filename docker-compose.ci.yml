@@ -7,7 +7,10 @@ services:
     build: .
     depends_on:
       - db
+    volumes:
+      - ./coverage:/task_manager/coverage/
     environment:
+      - COVERALLS_REPO_TOKEN
       - COVERAGE
       - RAILS_ENV
       - DATABASE_HOST=db
