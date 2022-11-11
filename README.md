@@ -1,7 +1,7 @@
 # README
 
 
-Link to deployed project - https://task-manager-73ee.onrender.com/
+Link to deployed project - https://task-manager-ckix.onrender.com
 
 
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FCrsPet%2FTaskManager%2Fbadge%3Fref%3Ddevelop&style=flat)](https://actions-badge.atrox.dev/CrsPet/TaskManager/goto?ref=develop)
