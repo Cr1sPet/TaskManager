@@ -1,5 +1,6 @@
 databases:
   - name: task_manager_db
+    plan: free
 
 services:
   - type: web
@@ -14,3 +15,4 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+    plan: free
