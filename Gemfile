@@ -35,6 +35,7 @@ group :development, :test do
 
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'coveralls_reborn', '~> 0.25.0', require: false
+  gem 'bullet'
 end
 
 group :development do
