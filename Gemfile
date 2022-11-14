@@ -71,4 +71,4 @@ gem 'active_model_serializers'
 gem 'webpacker-react', '~> 0.3.2'
 gem 'js-routes'
 gem 'rollbar'
-
+gem 'newrelic_rpm'
