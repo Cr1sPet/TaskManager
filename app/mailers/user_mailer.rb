@@ -1,22 +1,23 @@
 class UserMailer < ApplicationMailer
+
   def task_created
-    user = params[:user]
+    @user = params[:user]
     @task = params[:task]
 
-    mail(to: user.email, subject: 'New Task Created')
+    mail(to: @user.email, subject: 'New Task Created')
   end
 
   def task_updated
-    user = params[:user]
+    @user = params[:user]
     @task = params[:task]
 
-    mail(to: user.email, subject: 'Task Updated')
+    mail(to: @user.email, subject: 'Task Updated')
   end
 
   def task_deleted
-    user = params[:user]
+    @user = params[:user]
     @task = params[:task]
 
-    mail(to: user.email, subject: 'Task Deleted')
+    mail(to: @user.email, subject: 'Task Deleted')
   end
 end
