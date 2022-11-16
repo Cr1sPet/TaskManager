@@ -51,9 +51,10 @@ class UserMailerTest < ActionMailer::TestCase
 
   test 'forgot password' do
     user = create(:user)
-    params = { user: user }
-    email = UserMailer.with(params).forgot_password
     user.update_column(:recovery_password_token, SecureRandom.urlsafe_base64)
+    params = { user: user, token: user.recovery_password_token }
+    email = UserMailer.with(params).forgot_password
+
 
     assert_emails 1 do
       email.deliver_now

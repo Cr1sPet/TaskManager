@@ -9,8 +9,10 @@ class ForgotPasswordForm
   validate :user_valid?
 
   def user
-    User.find_by(email: email)
+    @user = User.find_by(email: email)
+    @user
   end
+
 
   private
 

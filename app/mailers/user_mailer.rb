@@ -23,6 +23,7 @@ class UserMailer < ApplicationMailer
 
   def forgot_password
     @user = params[:user]
+    @token = params[:token]
 
     mail(to: @user.email, subject: 'Reset password instructions')
   end
