@@ -1,1 +1,11 @@
-h1 Forgot Password?
+
+h4 Forgot password?
+
+- if !@forgot_password.valid?
+  = simple_form_for @forgot_password, url: forgot_password_path do |f|
+    p
+      = f.input :email
+    p
+      = f.button  :submit, "Send email"
+- else
+    p The link has been sent to the email you entered and will be valid for 24 hours
