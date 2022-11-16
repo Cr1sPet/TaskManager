@@ -1,6 +1,6 @@
 
 h4 Recover Password
-= simple_form_for @reset_password, url: reset_password_path(@token) do |f|
+= simple_form_for @reset_password, url: reset_password_url(@token), method: :put do |f|
  p
    = f.input :password
  p
