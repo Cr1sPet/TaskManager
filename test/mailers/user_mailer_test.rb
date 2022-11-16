@@ -48,4 +48,20 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal 'Task Deleted', email.subject
     assert email.body.to_s.include?("Task #{task.id} was deleted")
   end
+
+  test 'forgot password' do
+    user = create(:user)
+    params = { user: user }
+    email = UserMailer.with(params).forgot_password
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+
+    assert_equal ['noreply@taskmanager.com'], email.from
+    assert_equal [user.email], email.to
+    assert_equal 'Reset password instructions', email.subject
+    assert email.body.to_s.include?("We received your request to change your password. To do this, just click on the link:")
+  end
+
 end
