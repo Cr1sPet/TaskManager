@@ -1,8 +1,10 @@
 class Web::ResetPasswordsController < Web::ApplicationController
-  def show
+  def edit
+    @reset_password = ResetPasswordForm.new
+    @token = params[:id]
   end
 
-  def create
+  def update
   end
 
 end
