@@ -53,6 +53,7 @@ class UserMailerTest < ActionMailer::TestCase
     user = create(:user)
     params = { user: user }
     email = UserMailer.with(params).forgot_password
+    user.update_column(:recovery_password_token, SecureRandom.urlsafe_base64)
 
     assert_emails 1 do
       email.deliver_now
@@ -62,6 +63,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal [user.email], email.to
     assert_equal 'Reset password instructions', email.subject
     assert email.body.to_s.include?("We received your request to change your password. To do this, just click on the link:")
+    assert email.body.to_s.include?(user.recovery_password_token)
   end
 
 end
