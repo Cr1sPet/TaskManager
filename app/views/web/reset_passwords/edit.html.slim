@@ -10,5 +10,6 @@
     p
       = f.button  :submit, "Send"
 - else
-  h2 The restore link is out of date, try requesting a new one:
-  a{href=new_forgot_password_path title='Forgot password?' style="margin-left: 10px"}Forgot password?
+  h4 Oops!
+  p The restore link is out of date, try requesting a new one:
+  = link_to "Forgot password?", new_forgot_password_path
