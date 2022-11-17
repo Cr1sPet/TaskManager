@@ -7,6 +7,7 @@ class UserMailerPreview < ActionMailer::Preview
 
     UserMailer.with(params).task_created
   end
+
   def task_updated
     user = User.first
     task = Task.first
@@ -14,6 +15,7 @@ class UserMailerPreview < ActionMailer::Preview
 
     UserMailer.with(params).task_updated
   end
+
   def task_deleted
     user = User.first
     task = Task.first
@@ -23,9 +25,8 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   def forgot_password
-
     user = User.first
 
-    UserMailer.with({ user: user, token: SecureRandom.urlsafe_base64}).forgot_password
+    UserMailer.with({ user: user, token: SecureRandom.urlsafe_base64 }).forgot_password
   end
 end

@@ -22,17 +22,15 @@ class Web::ForgotPasswordsControllerTest < ActionController::TestCase
     assert_not_nil user.recovery_password_token
     assert_not_nil user.recovery_password_sent_at
 
-    assert_match "The link has been sent to the email you entered and will be valid for 24 hours", @response.body
+    assert_match 'The link has been sent to the email you entered and will be valid for 24 hours', @response.body
 
     attrs = {
-      email: "#{user.email}INCORRECT"
+      email: "#{user.email}INCORRECT",
     }
 
     post :create, params: { forgot_password_form: attrs }
 
     assert_response :success
-    assert_match "Send email", @response.body
-
+    assert_match 'Send email', @response.body
   end
-
 end

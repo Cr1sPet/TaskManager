@@ -13,7 +13,6 @@ class ForgotPasswordForm
     @user
   end
 
-
   private
 
   def user_valid?

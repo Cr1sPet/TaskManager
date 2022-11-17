@@ -20,13 +20,13 @@ class Web::ResetPasswordsController < Web::ApplicationController
       @user.password = reset_password_params[:password]
       @user.recovery_password_token = nil
       @user.save
-      redirect_to (:root)
+      redirect_to(:root)
     end
   end
 
   private
+
   def reset_password_params
     params.require(:reset_password_form).permit(:password, :password_confirmation)
   end
-
 end
