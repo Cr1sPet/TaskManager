@@ -1,4 +1,6 @@
 class Web::ResetPasswordsController < Web::ApplicationController
+  include ResetPasswordHelper
+
   def edit
     @reset_password = ResetPasswordForm.new
     @token = params[:id]
@@ -6,21 +8,18 @@ class Web::ResetPasswordsController < Web::ApplicationController
 
   def update
     @token = params[:id]
+
     @reset_password = ResetPasswordForm.new(reset_password_params)
-    @user = User.find_by(recovery_password_token: @token)
 
     if !@reset_password.valid?
-      render(:edit)
-      return
+      render(:edit) and return
     end
-    if !@user || ((Time.now - @user.recovery_password_sent_at) / 1.day) >= 1
-      @incorrect_token = true
-      render(:edit)
-    else
-      @user.password = reset_password_params[:password]
-      @user.recovery_password_token = nil
-      @user.save
+
+    if reset_password?(@token, @reset_password.password)
       redirect_to(:root)
+    else
+      @is_token_outdated = true
+      render(:edit)
     end
   end
 

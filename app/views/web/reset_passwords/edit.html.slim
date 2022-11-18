@@ -1,6 +1,10 @@
 
-- if !@incorrect_token
+- if @is_token_outdated
+  h4 Oops!
+  p The restore link is out of date, try requesting a new one:
+  = link_to "Forgot password?", new_forgot_password_path
 
+- else
   h4 Recover Password
   = simple_form_for @reset_password, url: reset_password_url(@token), method: :put do |f|
     p
@@ -9,7 +13,4 @@
       = f.input :password_confirmation
     p
       = f.button  :submit, "Send"
-- else
-  h4 Oops!
-  p The restore link is out of date, try requesting a new one:
-  = link_to "Forgot password?", new_forgot_password_path
+
