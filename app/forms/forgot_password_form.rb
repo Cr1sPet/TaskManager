@@ -16,7 +16,7 @@ class ForgotPasswordForm
 
   def user_valid?
     if user.blank?
-      errors.add(:email, "user with emails: #{email} doesn't exist")
+      errors.add(:email, :not_found, {model: :user, field: :email, value: email} )
     end
   end
 end
