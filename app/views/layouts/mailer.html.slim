@@ -12,7 +12,11 @@
                 span style="color:#ffffff; font-size: 20px; font-family:Arial, Helvetica, sans-serif;"
                   b Task Board Project
             tr
-              = yield
+              td bgcolor="ffffff" style="padding: 30px;"
+                p style="color:#000000; font-size: 16px; font-family:Arial, Helvetica, sans-serif;"
+                  | Dear #{@user.first_name}!
+                br
+                = yield
             tr
               td align="center" style="padding: 30px;"
                 span style="color: #9D9D9D; font-size: 14px; font-family:Arial, Helvetica, sans-serif;"
