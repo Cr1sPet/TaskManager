@@ -9,10 +9,13 @@ class Web::ForgotPasswordsController < Web::ApplicationController
     @forgot_password = ForgotPasswordForm.new(forgot_password_params)
     @user = @forgot_password.user
 
-    if @user.present? && add_recovery_token_to_user!(@user)
+    return render(:new) if @forgot_password.invalid?
+
+    if add_recovery_token_to_user!(@user)
       UserMailer.with({ user: @user, token: @user.recovery_password_token }).forgot_password.deliver_now
+    else
+      render(:new)
     end
-    render(:new)
   end
 
   private

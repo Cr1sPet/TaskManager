@@ -11,16 +11,9 @@ class Web::ResetPasswordsController < Web::ApplicationController
 
     @reset_password = ResetPasswordForm.new(reset_password_params)
 
-    if !@reset_password.valid?
-      render(:edit) and return
-    end
+    return render(:edit) if @reset_password.invalid?
 
-    if reset_password?(@token, @reset_password.password)
-      redirect_to(:root)
-    else
-      @is_token_outdated = true
-      render(:edit)
-    end
+    return redirect_to(:root) if reset_password?(@token, @reset_password.password)
   end
 
   private
