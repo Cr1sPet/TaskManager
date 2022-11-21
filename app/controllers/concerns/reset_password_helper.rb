@@ -1,4 +1,11 @@
 module ResetPasswordHelper
+
+  def add_recovery_token_to_user!(user)
+    user.recovery_password_token = SecureRandom.urlsafe_base64
+    user.recovery_password_sent_at = DateTime.now
+    user.save
+  end
+
   def reset_password?(token, new_password)
     if token_actual?(token)
       update_password(new_password)

@@ -1,5 +1,5 @@
 class Web::ForgotPasswordsController < Web::ApplicationController
-  include ForgotPasswordHelper
+  include ResetPasswordHelper
 
   def new
     @forgot_password = ForgotPasswordForm.new
