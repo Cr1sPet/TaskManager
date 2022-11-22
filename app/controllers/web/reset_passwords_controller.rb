@@ -8,7 +8,6 @@ class Web::ResetPasswordsController < Web::ApplicationController
 
   def update
     @token = params[:id]
-
     @reset_password = ResetPasswordForm.new(reset_password_params)
 
     return render(:edit) if @reset_password.invalid?
