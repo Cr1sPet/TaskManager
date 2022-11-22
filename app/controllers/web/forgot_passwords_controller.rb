@@ -11,7 +11,7 @@ class Web::ForgotPasswordsController < Web::ApplicationController
 
     return render(:new) if @forgot_password.invalid?
 
-    if add_recovery_token_to_user!(@user)
+    if add_recovery_token_to_user(@user)
       UserMailer.with({ user: @user, token: @user.recovery_password_token }).forgot_password.deliver_now
     else
       render(:new)
