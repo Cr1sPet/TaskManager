@@ -13,8 +13,7 @@
                   b Task Board Project
             tr
               td bgcolor="ffffff" style="padding: 30px;"
-                p style="color:#000000; font-size: 16px; font-family:Arial, Helvetica, sans-serif;"
-                  | Dear #{@user.first_name}!
+                = render partial: 'standard_paragraph', locals: { text: "Dear #{@user.first_name}!" }
                 br
                 = yield
             tr
