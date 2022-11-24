@@ -12,7 +12,11 @@ class Web::ResetPasswordsController < Web::ApplicationController
 
     return render(:edit) if @reset_password.invalid?
 
-    return redirect_to(:root) if reset_password(@token, @reset_password.password)
+    user = User.find_by(recovery_password_token: @token)
+    if token_actual?(user)
+      reset_password(user, @reset_password.password)
+      redirect_to(:root)
+    end
   end
 
   private

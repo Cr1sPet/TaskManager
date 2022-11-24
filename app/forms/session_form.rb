@@ -18,7 +18,7 @@ class SessionForm
 
   def user_valid?
     if user.blank? || !user.authenticate(password)
-      errors.add(:email, :confirmation, attribute: "email or password")
+      errors.add(:email, :confirmation, attribute: 'email or password')
     end
   end
 end
