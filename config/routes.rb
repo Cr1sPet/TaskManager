@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root :to => "web/boards#show"
 
   scope module: :web do
+    resources :reset_passwords, only: [:edit, :update]
+    resource :forgot_password, only: [:new, :create]
     resource :board, only: :show
     resource :session, only: [:new, :create, :destroy]
     resources :developers, only: [:new, :create]
@@ -17,5 +19,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show]
     end
   end
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 end

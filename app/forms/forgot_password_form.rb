@@ -1,24 +1,22 @@
-class SessionForm
+class ForgotPasswordForm
   include ActiveModel::Model
 
   attr_accessor(
     :email,
-    :password,
   )
 
   validates :email, presence: true, format: { with: /\A\S+@.+\.\S+\z/ }
-  validates :password, presence: true
   validate :user_valid?
 
   def user
-    User.find_by(email: email)
+    @user ||= User.find_by(email: email)
   end
 
   private
 
   def user_valid?
-    if user.blank? || !user.authenticate(password)
-      errors.add(:email, :confirmation, attribute: 'email or password')
+    if user.blank?
+      errors.add(:email, :not_found, model: :user, field: :email, value: email)
     end
   end
 end

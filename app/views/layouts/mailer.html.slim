@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    title Email template
+  body bgcolor="#efefef" style="padding: 0; margin: 0;"
+    table border="0" cellpadding="0" cellspacing="0" width="100%"
+      tr
+        td align="center"
+          table width="600" border="0" cellpadding="0" cellspacing="0"
+            tr
+              td bgcolor="#3F52B5" align="center" style="padding: 30px 0;"
+                span style="color:#ffffff; font-size: 20px; font-family:Arial, Helvetica, sans-serif;"
+                  b Task Board Project
+            tr
+              td bgcolor="ffffff" style="padding: 30px;"
+                = render partial: 'standard_paragraph', locals: { text: "Dear #{@user.first_name}!" }
+                br
+                = yield
+            tr
+              td align="center" style="padding: 30px;"
+                span style="color: #9D9D9D; font-size: 14px; font-family:Arial, Helvetica, sans-serif;"
+                  | &copy; 2022, TaskBoard Project

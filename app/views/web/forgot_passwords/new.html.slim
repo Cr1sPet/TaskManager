@@ -1,0 +1,6 @@
+  = simple_form_for @forgot_password, url: forgot_password_path do |f|
+    p
+      = f.input :email
+    p
+      = f.button  :submit, "Send email"
+

@@ -5,3 +5,4 @@ h4 Log in
     = f.input :password , input_html: { value: 'admin' }
   p
     = f.button  :submit, "Sign in"
+    = link_to "Forgot password?", new_forgot_password_path,  style: "margin-left: 10px"
