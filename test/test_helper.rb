@@ -37,3 +37,5 @@ end
 class ActiveSupport::TestCase
   include ActionMailer::TestHelper
 end
+
+Sidekiq::Testing.inline!
