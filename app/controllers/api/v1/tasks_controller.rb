@@ -37,7 +37,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     task = Task.find(params[:id])
 
     if task.destroy
-      UserMailer.with({ user: current_user, task: task }).task_deleted.deliver_now
+      SendTaskDestroyNotificationJob.perform_async(current_user.id, task.id)
     end
 
     respond_with(task)
