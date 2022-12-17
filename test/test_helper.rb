@@ -1,6 +1,4 @@
-
 require 'sidekiq/testing'
-
 
 if ENV['COVERAGE']
   require 'simplecov'
