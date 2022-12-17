@@ -57,7 +57,7 @@ services:
       - redis
 
   redis:
-    image: redis:6-alpine
+    image: redis:5.0.9-alpine
 
 volumes:
   bundle_cache:
