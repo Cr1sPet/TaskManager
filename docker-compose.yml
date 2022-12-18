@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   web:
@@ -12,9 +12,15 @@ services:
       - 3000:3000
       - 3001:3001
       - 3002:3002
+
     depends_on:
       - db
+      - redis
+      - sidekiq
+
     environment: &web-environment
+
+      REDIS_URL: redis://redis
 
       DATABASE_HOST: db
       DATABASE_USERNAME: postgres
@@ -34,6 +40,24 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+
+  sidekiq:
+
+    build: .
+
+    command: bundle exec sidekiq -C /task_manager/config/sidekiq.yml
+
+    environment: *web-environment
+
+    volumes: *web-volumes
+
+    depends_on:
+
+      - redis
+
+  redis:
+    image: redis
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
 
 volumes:
   bundle_cache:

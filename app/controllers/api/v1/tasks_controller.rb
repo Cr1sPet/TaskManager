@@ -17,7 +17,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   def create
     task = current_user.my_tasks.new(task_params)
     if task.save
-      UserMailer.with({ user: current_user, task: task }).task_created.deliver_now
+      SendTaskCreateNotificationJob.perform_async(task.id)
     end
 
     respond_with(task, serializer: TaskSerializer, location: nil)
@@ -27,7 +27,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     task = Task.find(params[:id])
 
     if task.update(task_params)
-      UserMailer.with({ user: current_user, task: task }).task_updated.deliver_now
+      SendTaskUpdateNotificationJob.perform_async(task.id)
     end
 
     respond_with(task, serializer: TaskSerializer)
@@ -37,7 +37,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     task = Task.find(params[:id])
 
     if task.destroy
-      UserMailer.with({ user: current_user, task: task }).task_deleted.deliver_now
+      SendTaskDestroyNotificationJob.perform_async(serialize_task(task))
     end
 
     respond_with(task)
@@ -48,6 +48,10 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   end
 
   private
+
+  def serialize_task(task)
+    task.to_json
+  end
 
   def task_params
     params.require(:task).permit(:name, :description, :author_id, :assignee_id, :state_event, :expired_at)
