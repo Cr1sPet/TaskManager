@@ -1,7 +1,6 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   web:
     build: .
     volumes: &web-volumes
@@ -58,6 +57,7 @@ services:
 
   redis:
     image: redis:5.0.9-alpine
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
 
 volumes:
   bundle_cache:
