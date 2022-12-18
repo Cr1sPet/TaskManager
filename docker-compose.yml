@@ -56,7 +56,7 @@ services:
       - redis
 
   redis:
-    image: redis:5.0.9-alpine
+    image: redis
     command: ["redis-server", "--bind", "redis", "--port", "6379"]
 
 volumes:
