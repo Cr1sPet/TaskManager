@@ -110,6 +110,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hiredis (0.6.3)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -343,6 +344,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   coveralls_reborn (~> 0.25.0)
   factory_bot_rails
+  hiredis
   jbuilder (~> 2.7)
   js-routes
   kaminari
