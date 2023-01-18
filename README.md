@@ -1,7 +1,7 @@
 # README
 
 
-Link to deployed project - https://task-manager-ckix.onrender.com
+Link to the deployed project - https://task-manager-ckix.onrender.com
 
 How to try locally:
 
