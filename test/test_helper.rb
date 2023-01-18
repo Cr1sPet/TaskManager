@@ -16,6 +16,7 @@ end
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require 'sidekiq/testing'
 
 class ActiveSupport::TestCase
   include AuthHelper
@@ -33,3 +34,5 @@ end
 class ActiveSupport::TestCase
   include ActionMailer::TestHelper
 end
+
+Sidekiq::Testing.inline!
